@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "[ $CI ] && echo \"\nENV IN CI, NOT SETUP HUSKY\" || npx --no-install husky install",
     "prepublish": "npm run build",
-    "build": "npm run test && echo '\nBUILDING SOURCES' && tsc --project ./tsconfig.json",
+    "build": "npm run test && echo '\nBUILDING SOURCES'; [ -d ./build ] && rm -rf ./build; tsc --project ./tsconfig.json",
     "test": "node --expose-gc ./node_modules/.bin/jest --config ./jest.config.ts --runInBand --silent --verbose --coverage --logHeapUsage",
     "test:silent": "node --expose-gc ./node_modules/.bin/jest --config ./jest.config.ts --runInBand --silent --coverage --logHeapUsage",
     "test:file": "node --expose-gc ./node_modules/.bin/jest --config ./jest.config.ts --runInBand --no-cache --verbose --watch --detectOpenHandles --logHeapUsage --coverage --testPathPattern",
